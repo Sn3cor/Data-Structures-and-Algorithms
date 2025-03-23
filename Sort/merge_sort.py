@@ -1,3 +1,4 @@
+inversions=0
 def merge_sort(T,l,r):
     if l>=r:
         return
@@ -7,6 +8,7 @@ def merge_sort(T,l,r):
     merge(T,l,q,r)
 
 def merge(T,l,q,r):
+    global inversions
     Nl = q-l+1
     Nr = r-q
     left = [0 for _ in range(Nl)]
@@ -26,6 +28,7 @@ def merge(T,l,q,r):
         else:
             T[k]=right[j]
             j+=1
+            inversions += i
         k+=1
     
     while i < Nl:
@@ -37,7 +40,9 @@ def merge(T,l,q,r):
         T[k]=right[j]
         j+=1
         k+=1
+        inversions+=1
 
-T=[1,54,2,4,13,76,5,75,45,5,3]
+T=[1,20,6,4,5]
 merge_sort(T,0,len(T)-1)
 print(T)
+print(inversions)
