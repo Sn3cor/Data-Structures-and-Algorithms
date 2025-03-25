@@ -42,7 +42,15 @@ def merge(T,l,q,r):
         k+=1
         inversions+=1
 
+def local_inversions(nums):
+    count=0
+    for i in range(len(nums)-1):
+        if nums[i]>nums[i+1]: count+=1
+    return count
+
+T1=[1,2,0]
 T=[1,20,6,4,5]
-merge_sort(T,0,len(T)-1)
-print(T)
+print(local_inversions(T1))
+merge_sort(T1,0,len(T1)-1)
+print(T1)
 print(inversions)
