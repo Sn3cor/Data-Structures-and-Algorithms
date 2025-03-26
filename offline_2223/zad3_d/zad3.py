@@ -1,7 +1,7 @@
 from zad3testy import runtests
 
 def strong_string(T):
-    # tu prosze wpisac wlasna implementacje
+    #offline1 z roku 2425
     return -1
 
 
