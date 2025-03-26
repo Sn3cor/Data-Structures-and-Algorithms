@@ -7,5 +7,4 @@ def insertion_sort(T):
             T[j+1]=T[j]
             j-=1
         T[j+1]=key
-
     return T

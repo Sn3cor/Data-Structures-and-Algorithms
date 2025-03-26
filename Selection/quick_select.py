@@ -18,6 +18,6 @@ def quick_select(A,p,r,k): #k is an index that we want to select after sorting
     else:
         return quick_select(A,q+1,r,k)
     
-T=[34,24,12,65,23,44,11,2,5,9]
-select = quick_select(T,0,len(T)-1,9)
+T=[1,2,3,4,5,6,7,8]
+select = quick_select(T,0,len(T)-1,len(T)-4)
 print(select)
