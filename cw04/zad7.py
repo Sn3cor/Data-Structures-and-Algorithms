@@ -1,0 +1,1 @@
+#Sprawdź czy w grafie istnieje cykl o dlugosci 4 O(V3)
