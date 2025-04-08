@@ -9,6 +9,7 @@ def DFS(G: list[list[int]]):
                 parent[nb]=start
                 DFSVisit(G,nb)
         time += 1
+        
     V=len(G)
     visited = [False for _ in range(V)]
     parent = [None for _ in range(V)]
