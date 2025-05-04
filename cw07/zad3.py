@@ -3,10 +3,10 @@ Algorytm Kruskla i union
 '''
 
 class Node:
-    def __init__(self,value, parent=None ,rang=None):
-        self.parent = parent
+    def __init__(self,value):
+        self.parent = self
         self.value = value
-        self.rang = rang
+        self.rank = 0
 
 def find(x):
     y=x
