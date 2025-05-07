@@ -1,49 +1,50 @@
 from kol2testy import runtests
+from collections import deque
 
-class Node:
-    def __init__(self,value):
-        self.value=value
-        self.parent=self
-        self.rank=0
+def check_connectivity(E,n,s):
+    G = [[] for _ in range(n)]
+    weight = 0
+    for u,v,w in E:
+        G[u].append(v)
+        G[v].append(u)
+        weight += w
 
-def find(x):
-    if x != x.parent:
-        x.parent = find(x.parent)
-    return x.parent
+    visited = [0 for _ in range(len(G))]
+    parent = [None for _ in range(len(G))]
+    visited[s] = 1
+    queue = deque([s])
 
-def union(x,y):
-    x=find(x)
-    y=find(y)
-    if x==y: return
-    if x.rank<y.rank:
-        x.parent = y
-    else:
-        y.parent = x
-        if x.rank==y.rank:
-            x.rank+=1
+    while queue:
+        u = queue.popleft()
 
-def get_edges(G):
-    E = []
-    for i in range(len(G)):
-        for u,weight in G[i]:
-            if i<u:
-                E.append((i,u,weight))
-    return E
+        for v in G[u]:
+            if not visited[v]:
+                visited[v] = 1
+                parent[v]=u
+                queue.append(v)
+            elif v != parent[u]: return None
 
-def Kruskal(G):
-    A=[]
-    E = get_edges(G)
-    n=len(G)
-    E.sort(key=lambda x: x[2])
-    Nodes = [Node(v) for v in range(n)]
-    for e in E:
-        if find(Nodes[e[0]]) != find(Nodes[e[1]]):
-            union(Nodes[e[0]],Nodes[e[1]])
-            A.append(e)
-
-    return A
-
+    return None if min(visited) == 0 else weight
+    
 def beautree(G):
-    pass
+    
+    E = []
+    for u in range(len(G)):
+        for v,w in G[u]:
+            if u<v:
+                E.append((u,v,w))
+    
+    E.sort(key = lambda x: x[2])
+    i = 0
+    j = len(G)-1
+    
+    while j< len(E):
+        weight = check_connectivity(E[i:j],len(G),0)
+        if weight is not None:
+            return weight
+        i+=1
+        j+=1
+
+    return None
 # zmien all_tests na True zeby uruchomic wszystkie testy
-runtests( beautree, all_tests = False )
+runtests( beautree, all_tests = True )
