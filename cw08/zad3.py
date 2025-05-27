@@ -1,0 +1,5 @@
+'''
+Najdłuzszy podciąg rosnący
+
+
+'''
