@@ -1,5 +1,9 @@
 from zad1ktesty import runtests
+'''
+f(i,j) -  podciąg od i do j zawierający największą róznicę 0 i 1
 
+f(i,j) = dp[a][b-1]-1 or dp[a][b-1]+1
+'''
 def roznica( S ):
     n = len(S)
     dp = [[0 for _ in range(n)]for _ in range(n)]

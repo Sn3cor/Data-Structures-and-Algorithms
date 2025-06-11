@@ -37,5 +37,6 @@ W = [4, 2, 6, 3, 7, 1, 8, 5, 9, 3]   # Wagi
 P = [50, 40, 70, 30, 80, 20, 90, 60, 100, 25]  # Wartości
 B = 25  # Pojemność plecaka
 
+
 wynik = knapsack(W, P, B)
 print("Maksymalna wartość:", wynik)

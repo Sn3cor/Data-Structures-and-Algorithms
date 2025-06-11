@@ -23,7 +23,7 @@ def m(T,k):
 
 
     def minimax(i,k):
-        if k==1: return suma(0,1)
+        if k==1: return suma(0,i)
         if dp[i][k] is not None: return dp[i][k]
         best = 0
         for j in range(k,i):
