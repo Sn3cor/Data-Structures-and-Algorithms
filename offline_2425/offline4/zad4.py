@@ -2,6 +2,46 @@ from zad4testy import runtests
 import heapq
 from queue import PriorityQueue
 # Jakub Krupa
+
+def spacetravel2(n,E,S,a,b):
+    def edges_to_list(E,n):
+        list = [[] for _ in range(n)]
+        for u,v,c in E:
+            list[u].append((v,c))
+            list[v].append((u,c))
+
+        return list
+    
+    def dijkstra(G,start):
+        nonlocal osobliwosci,S
+        distance = [float("inf") for _ in range(n)]
+        distance[start] = 0
+        pq = PriorityQueue()
+        pq.put((0,start))
+        
+        while not pq.empty():
+            current_cost, u = pq.get()
+            if osobliwosci[u]:
+                for os in S:
+                    if current_cost < distance[os]:
+                        distance[os] = current_cost
+                        pq.put((distance[os],os))
+
+            for v,cost in G[u]:
+                if current_cost + cost < distance[v]:
+                    distance[v] = current_cost + cost
+                    pq.put((distance[v],v))
+
+        return distance
+
+    osobliwosci = [False for _ in range(n)]
+    for i in S:
+        osobliwosci[i] = True
+
+    result = dijkstra(edges_to_list(E,n),a)
+
+    return result[b] if result[b] != float("inf") else None
+
 # def spacetravel( n, E, S, a, b ):
 #     graph = [[] for _ in range(n)]
 #     for u,v,weight in E:
@@ -72,4 +112,4 @@ def spacetravel(n,E,S,a,b):
     if dist_from_new[a]!=float("inf") and dist_from_new[b]!=float("inf"):
         return min(dist_from_new[a] + dist_from_new[b], dist_from_a[b])
 # zmien all_tests na True zeby uruchomic wszystkie testy
-runtests( spacetravel, all_tests = True )
+runtests( spacetravel2, all_tests = True )

@@ -78,7 +78,5 @@ def goodknight( G, s, t ):
   return min(visited[t])
         
 
-
-
 # zmien all_tests na True zeby uruchomic wszystkie testy
 runtests( goodknight, all_tests = True )
