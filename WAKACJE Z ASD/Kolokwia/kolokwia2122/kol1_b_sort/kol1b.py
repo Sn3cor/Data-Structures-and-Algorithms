@@ -1,13 +1,18 @@
 from kol1btesty import runtests
-
+from collections import defaultdict
 
 def f(T):
-    def normalise(T):
-        for i in range(len(T)):
-            pass
+    counter = defaultdict(lambda:0)
+    res = 0
+    for word in T:
+        freq = [0] * 26
+        for ch in word:
+            freq[ord(ch)-ord('a')]+=1
+        hash = tuple(freq)
+        counter[hash] +=1
+        res = max(res,counter[hash])
     # tu prosze wpisac wlasna implementacje
-    return 0
+    return res
 
 
-# Zamien all_tests=False na all_tests=True zeby uruchomic wszystkie testy
-runtests( f, all_tests=False )
+runtests( f, all_tests=True )
